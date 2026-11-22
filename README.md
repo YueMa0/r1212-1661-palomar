@@ -2,6 +2,8 @@
 
 This repository contains a Lean 4 proof that the diagonal Ramsey number R(12,12) is at least 1661, in the form required by the [Palomar registry](https://palomar-registry.org) of Lean-verified mathematics.
 
+> **Registered** in Palomar as [PALOMAR-2026-11-22-000003 v1](https://palomar-registry.org/entry.html?id=PALOMAR-2026-11-22-000003&version=1), at commit 6ffa6419e3df32ea5d629851f9cfddcdc17d93ad.
+
 ```lean
 theorem R1212.lower_bound_1661 :
     ∃ G : SimpleGraph (Fin 1660), G.CliqueFree 12 ∧ Gᶜ.CliqueFree 12
