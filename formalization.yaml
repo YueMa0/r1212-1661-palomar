@@ -131,13 +131,14 @@ fidelity:
     graph or in its complement.
 
 review:
-  status: "unchecked"
+  status: "self-assessed"
   reviewers: []
   notes: >-
-    No separate review was performed before submission, and the proof was not reviewed line by
-    line by a person. The original formalization (r1212-1661) was checked by the Lean kernel,
-    replayed by leanchecker and accepted by the independent kernel nanoda; the colouring was also
-    checked there by two independent exhaustive computer searches.
+    The author read Challenge.lean and checked that its statement says R(12,12) ≥ 1661. No
+    separate review was performed, and the proof was not reviewed line by line by a person. The
+    original formalization (r1212-1661) was checked by the Lean kernel, replayed by leanchecker
+    and accepted by the independent kernel nanoda; the colouring was also checked there by two
+    independent exhaustive computer searches.
 
 alignment:
   namespace: "RamseyIncrement"
