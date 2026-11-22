@@ -1,0 +1,154 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+version: "v0.4"
+
+project:
+  name: "R(12,12) ≥ 1661: a red/blue colouring of the edges of K_1660 with no monochromatic K_12"
+  description: >-
+    The diagonal Ramsey number R(12,12) is at least 1661: there is a simple graph on 1660
+    vertices such that neither the graph nor its complement contains a clique on 12 vertices,
+    that is, a red/blue colouring of the edges of K_1660 with no monochromatic K_12. The graph
+    is built from the Mathon–Shearer (11,11)-colouring M(797) on 1596 vertices by deleting a set
+    of 21 vertices, which contains two antipodal pairs of M(797), and adding 85 core vertices,
+    each of which copies a deleted vertex or has a single colour towards the remaining 1575
+    vertices. The proof is a clone-projection argument with an antipodal rule. It uses that
+    M(797) has no monochromatic K_11 (proved in Lean here, following r1212-1642), that antipodal
+    vertices of M(797) have opposite colours towards every other vertex, and finite checks on the
+    85 core vertices that the Lean kernel evaluates with decide +kernel. The construction and the
+    proof are described in the preprint hexagon:2611.00248. This repository is a port of the
+    formalization in https://github.com/YueMa0/r1212-1661 (Lean 4.32.1) to Lean 4.35.0 and the
+    module system.
+  authors:
+    - "Yue Ma"
+  license: "MIT"
+  responsible_maintainers:
+    - "Yue Ma"
+
+classification:
+  arxiv: ["math.CO"]
+  msc2020: ["05C55", "05D10", "68V20"]
+
+sources:
+  - title: "R(12,12) ≥ 1661 by extending the Mathon–Shearer coloring"
+    authors:
+      - "Yue Ma"
+    id: "hexagon:2611.00248"
+    type: "preprint"
+    location: "https://hexagonmath.org/2611.00248"
+    relationship: "formalizes"
+    note: >-
+      The main theorem of the preprint states that there is a red/blue coloring of the edges of
+      K_1660 with no monochromatic K_12, hence R(12,12) ≥ 1661. The formalization follows the
+      proof given there: the projection criterion for clone extensions with the antipodal rule.
+    license: "CC BY 4.0"
+    author_endorsement: "participated"
+  - title: "Lower bounds for Ramsey numbers and association schemes"
+    authors:
+      - "R. Mathon"
+    type: "article"
+    location: "J. Combin. Theory Ser. B 42 (1987), 122–127"
+    relationship: "background"
+    note: "Construction of the (11,11)-colouring M(797) on which the colouring is built."
+  - title: "Lower bounds for small diagonal Ramsey numbers"
+    authors:
+      - "J. B. Shearer"
+    type: "article"
+    location: "J. Combin. Theory Ser. A 42 (1986), 302–304"
+    relationship: "background"
+    note: "The same (11,11)-colouring, found independently of Mathon."
+  - title: "A constructive two-parameter Ramsey increment"
+    authors:
+      - "Milos Tatarevic"
+    id: "arXiv:2608.06531"
+    type: "preprint"
+    location: "https://arxiv.org/abs/2608.06531"
+    relationship: "background"
+    note: >-
+      Gives R(12,12) ≥ 1641. Its Lean development provides the definition of ramseyNumber and
+      the basic lemmas reused here (see related_formalizations).
+
+related_formalizations:
+  - id: "https://github.com/YueMa0/r1212-1661/tree/8709d47691c192c639a2f17bba5d0ef069b3edd8"
+    relationship: "adapts"
+    note: >-
+      The original formalization of this result, in Lean 4.32.1 with Mathlib 520045ab. This
+      repository ports its lean/ directory to Lean 4.35.0 and the module system; UPSTREAM.md
+      lists every change.
+  - id: "https://github.com/YueMa0/r1212-1642"
+    relationship: "builds-on"
+    note: "Proves in Lean that M(797) is an (11,11)-colouring; its modules are reused."
+  - id: "https://github.com/YueMa0/r1212-1658"
+    relationship: "builds-on"
+    note: "The defect lemma (RamseyIncrement/R1658/Defect.lean) is reused."
+  - id: "https://github.com/milostatarevic/ramsey-increment-theorem/tree/36c15eca0c601be7b7f33e30ee6890f395d2e1ea"
+    relationship: "builds-on"
+    note: >-
+      Tatarevic's Lean development: Basic, Cone, RamseyNumber, SpecialLift and Transport are
+      reused, under its MIT licence.
+
+status:
+  scope: >-
+    Formalized in full: the existence of a graph on Fin 1660 such that neither it nor its
+    complement contains a 12-clique (Challenge.lean), and, in the library, the bound
+    1661 ≤ ramseyNumber 12 12 for Tatarevic's definition of the Ramsey number. That M(797) is an
+    (11,11)-colouring is proved in Lean, not assumed. Not formalized, and not needed for the
+    statement: that the graph defined in Lean is the published file graph/r1212_1660.graph of
+    r1212-1661 (checked there by a Python script), and the exhaustive computer searches reported
+    in the preprint.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: ["propext", "Classical.choice", "Quot.sound"]
+
+automation:
+  methods:
+    - method: "agent"
+      models: ["Claude Opus 5.5"]
+      framework: "Claude Code"
+      tool_setup: >-
+        Claude Code (Anthropic) with Lean 4, Mathlib, Python and C on a local machine. The agent
+        found the colouring by computer search, wrote the Lean development and the program that
+        generates its data tables, ran the builds and kernel checks, and ported the development to
+        Lean 4.35.0 and the module system for this submission. The author directed the project and
+        approved each stage.
+      cost:
+        wall_time: >-
+          The Lean development was written between 27 October and 4 November 2026 (r1212-1642,
+          r1212-1658, r1212-1661); the port took a few hours on 21 November 2026.
+        spend_usd: "subscription-based"
+        hardware: "local machines: an Apple M4 Mac mini with 16 GB of memory, and a Windows computer for r1212-1658"
+      prompting_notes: "Natural-language instructions from the author in Claude Code sessions."
+  spend_usd: "subscription-based"
+  notes: >-
+    All Lean code in this repository was written by Claude (Claude Opus 5.5) working in Claude
+    Code, except the five modules reused from Tatarevic's development, which were changed only
+    for the module system. The research continues r1212-1642 and r1212-1658; r1212-1658 started
+    from exploratory work by GPT-6 Astra (OpenAI). The preprint was drafted by Claude and revised
+    by the author.
+
+fidelity:
+  divergences: >-
+    None known. The preprint states that there is a red/blue colouring of K_1660 with no
+    monochromatic K_12; Challenge.lean states this as a graph on Fin 1660 with no 12-clique in the
+    graph or in its complement.
+
+review:
+  status: "unchecked"
+  reviewers: []
+  notes: >-
+    No separate review was performed before submission, and the proof was not reviewed line by
+    line by a person. The original formalization (r1212-1661) was checked by the Lean kernel,
+    replayed by leanchecker and accepted by the independent kernel nanoda; the colouring was also
+    checked there by two independent exhaustive computer searches.
+
+alignment:
+  namespace: "RamseyIncrement"
+  statements:
+    - source: "Main theorem of hexagon:2611.00248 (R(12,12) ≥ 1661)"
+      lean: "R1212.lower_bound_1661"
+      module: "Challenge"
+      status: "proved"
+      note: "Proved in Solution.lean from RamseyIncrement.R1661.r1212_hasRamseyColoring."
+
+acknowledgements: >-
+  Mathlib; Milos Tatarevic's Lean development ramsey-increment-theorem, whose definition of
+  ramseyNumber and basic lemmas are reused under the MIT licence; Lean's Comparator, leanchecker
+  and the independent kernel nanoda.
