@@ -18,10 +18,12 @@ project:
     formalization in https://github.com/YueMa0/r1212-1661 (Lean 4.32.1) to Lean 4.35.0 and the
     module system.
   authors:
-    - "Yue Ma"
+    - name: "Yue Ma"
+      orcid: "0009-0000-7593-8958"
   license: "MIT"
   responsible_maintainers:
-    - "Yue Ma"
+    - name: "Yue Ma"
+      orcid: "0009-0000-7593-8958"
 
 classification:
   arxiv: ["math.CO"]
@@ -30,7 +32,8 @@ classification:
 sources:
   - title: "R(12,12) ≥ 1661 by extending the Mathon–Shearer coloring"
     authors:
-      - "Yue Ma"
+      - name: "Yue Ma"
+        orcid: "0009-0000-7593-8958"
     id: "hexagon:2611.00248"
     type: "preprint"
     location: "https://hexagonmath.org/2611.00248"
